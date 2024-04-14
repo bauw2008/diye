@@ -15,7 +15,7 @@ function weaForm(){
 							<input class="form-control" type="text" name="weaapi_id" value="<?php echo $weaapi_id ?>" placeholder="天气APP_ID" >
 						</div>
 						<div class="form-group">
-							<small class="help-block">请先到<a href="https://tianqiapi.com" target="_blank">这里</a>注册账号</small>
+							<small class="help-block">请先到<a href="http://www.tianqiapi.com/index/" target="_blank">这里</a>注册账号</small>
 							<label>天气APP_KEY</label>
 							<input class="form-control" type="text" name="weaapi_key" value="<?php echo $weaapi_key ?>" placeholder="天气APP_KEY" >
 						</div>
