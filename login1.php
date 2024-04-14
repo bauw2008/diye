@@ -152,13 +152,15 @@ if (isset($_POST['login'])) {
         if ($showwea == 1) {
             $weaapi_id = $db->mGet("itv_config", "value", "where name='weaapi_id'");
             $weaapi_key = $db->mGet("itv_config", "value", "where name='weaapi_key'");
-            $url = "https://www.tianqiapi.com/api?version=v6&appid=$weaapi_id&appsecret=$weaapi_key&ip=$ip";
-			$url = "https://www.yiketianqi.com/free/day?appid=$weaapi_id&appsecret=$weaapi_key&unescape=1";
+			if (!empty($weaapi_id) && !empty($weaapi_key)) {
+			$url = "http://v1.yiketianqi.com/api?version=v63&appid=$weaapi_id&appsecret=$weaapi_key&ip=$ip";
+			$url = "http://v0.yiketianqi.com/free/day?appid=$weaapi_id&appsecret=$weaapi_key&ip=$ip&unescape=1";
             $weajson = file_get_contents($url);
             $obj = json_decode($weajson);
             if (!empty($obj->city)) {
-                $weather = date('今天n月d号') . $obj->week . '，' . $obj->city . '，' . $obj->tem . '℃' . $obj->wea . '，' . '气温:' . $obj->tem_night . '℃' . '～' . $obj->tem_day . '℃' . '，' . $obj->win . $obj->win_speed . '，' . '相对湿度:' . $obj->humidity . '，' . '空气质量:' . $obj->air .',气压:'.$obj->pressure;
+                $weather = date('今天n月d号') . $obj->week . '，' . $obj->city . '，' . $obj->tem . '℃' . $obj->wea . '，' . '气温:' . $obj->tem_night . '℃' . '～' . $obj->tem_day . '℃' . '，' . $obj->win . $obj->win_speed . '，' . '相对湿度:' . $obj->humidity . '，' . '空气质量:' . $obj->air .',气压:'.$obj->pressure. '，IP地址：' . $ip;
                 $adtext = $adtext . $weather;
+                } 
             } 
         } 
 
